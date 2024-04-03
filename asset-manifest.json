@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/read-journey/static/css/main.7acaea2f.css",
+    "main.js": "/read-journey/static/js/main.31f92fdf.js",
+    "index.html": "/read-journey/index.html",
+    "main.7acaea2f.css.map": "/read-journey/static/css/main.7acaea2f.css.map",
+    "main.31f92fdf.js.map": "/read-journey/static/js/main.31f92fdf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.31f92fdf.js"
+  ]
+}
