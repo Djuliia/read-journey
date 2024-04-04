@@ -51,4 +51,16 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     outline: none;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #262626 inset;
+
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: ${theme.colors.primary} !important;
+}
+
 `;

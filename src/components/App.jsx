@@ -4,7 +4,7 @@ import { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../redux/auth/selectors';
 const Register = lazy(() => import('../pages/Register'));
-const Login = lazy(() => import('../pages/Login'));
+// const Login = lazy(() => import('../pages/Login'));
 const Recommended = lazy(() => import('../pages/Recommended'));
 
 export const App = () => {

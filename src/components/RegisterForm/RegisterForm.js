@@ -1,10 +1,13 @@
 import { Logo } from 'components/Logo/Logo';
-import { ErrorMessage, Formik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
+import sprite from '../../images/sprite.svg';
 
 import {
   BtnRegistration,
   Container,
+  ErrorMsg,
+  EyeBtn,
   ImgWrap,
   InputWrap,
   Label,
@@ -20,11 +23,14 @@ import iPhoneDesktop from '../../images/iPhone_desktop.webp';
 import iPhoneDesktop2x from '../../images/iPhone_desktop2x.webp';
 import iPhoneMobile from '../../images/iPhone_mobile.webp';
 import iPhoneMobile2x from '../../images/iPhone_mobile2x.webp';
-import { createGlobalStyle } from 'styled-components';
+import { useState } from 'react';
 
 export const RegisterForm = () => {
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
+    name: Yup.string()
+      .min(3, 'Minimum 3 characters')
+      .max(30, 'Maximum 20 characters')
+      .required('Name is required'),
     email: Yup.string()
       .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'Invalid email')
       .required('Email is required'),
@@ -32,6 +38,13 @@ export const RegisterForm = () => {
       .min(7, 'Enter a valid password')
       .required('Password is required'),
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword(prevState => !prevState);
+  };
+
   return (
     <Container>
       <RegisterWrap>
@@ -62,11 +75,12 @@ export const RegisterForm = () => {
                 />
               </InputWrap>
               {errors.name && touched.name && (
-                <ErrorMessage name="name" component="div" />
+                <ErrorMsg name="name" component="div" />
               )}
               {touched.name && !errors.name && (
                 <SuccessMsg>Valid Name</SuccessMsg>
               )}
+
               <InputWrap>
                 <Label htmlFor="email">Mail:</Label>
                 <StyledInput
@@ -79,28 +93,49 @@ export const RegisterForm = () => {
                 />
               </InputWrap>
               {errors.email && touched.email && (
-                <ErrorMessage name="email" component="div" />
+                <ErrorMsg name="email" component="div" />
               )}
               {touched.email && !errors.email && (
                 <SuccessMsg>Valid Email</SuccessMsg>
               )}
+
               <InputWrap>
                 <Label htmlFor="password">Password:</Label>
                 <StyledInput
-                  type="text"
+                  type={showPassword ? 'text' : 'password'}
                   name="password"
                   id="password"
                   className={`special ${
-                    errors.password && touched.password ? 'error' : ''
-                  }`}
+                    touched.password && errors.password ? 'error' : ''
+                  } ${touched.password && !errors.password ? 'success' : ''}`}
                 />
+                <EyeBtn type="button" onClick={() => handleTogglePassword()}>
+                  {touched.password && errors.password ? (
+                    <svg width="20" height="20">
+                      <use href={`${sprite}#error`} />
+                    </svg>
+                  ) : touched.password && !errors.password ? (
+                    <svg width="20" height="20">
+                      <use href={`${sprite}#check`} />
+                    </svg>
+                  ) : (
+                    <svg width="20" height="20">
+                      {showPassword ? (
+                        <use href={`${sprite}#eye`} />
+                      ) : (
+                        <use href={`${sprite}#eye-off`} />
+                      )}
+                    </svg>
+                  )}
+                </EyeBtn>
               </InputWrap>
               {errors.password && touched.password && (
-                <ErrorMessage name="password" component="div" />
+                <ErrorMsg name="password" component="div" />
               )}
               {touched.password && !errors.password && (
                 <SuccessMsg>Password is secure</SuccessMsg>
               )}
+
               <NavWrap>
                 <BtnRegistration type="submit">Registration</BtnRegistration>
                 <StyledLink to="/login">Already have an account?</StyledLink>

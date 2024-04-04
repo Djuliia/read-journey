@@ -1,4 +1,4 @@
-import { Field, Form } from 'formik';
+import { ErrorMessage, Field, Form } from 'formik';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { theme } from 'theme';
@@ -6,12 +6,15 @@ import { theme } from 'theme';
 export const Container = styled.div`
   margin: 0 auto;
   padding: 20px;
-  min-width: 320px;
-  max-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+
+  @media screen and (min-width: 375px) {
+    width: 375px;
+  }
 
   @media screen and (min-width: 768px) {
     padding: 32px;
@@ -27,13 +30,15 @@ export const Container = styled.div`
 `;
 
 export const RegisterWrap = styled.div`
+  width: 335px;
   padding: 20px 20px 40px;
   border-radius: 30px;
   background-color: ${theme.colors.secondary};
+
   @media screen and (min-width: 768px) {
     padding: 40px 64px;
     min-height: 960px;
-    width: 704px;
+    /* width: 704px; */
   }
   @media screen and (min-width: 1440px) {
     height: 100%;
@@ -70,13 +75,15 @@ export const StyledForm = styled(Form)`
 
 export const InputWrap = styled.div`
   position: relative;
-  &:not(:last-of-type) {
-    margin-bottom: 8px;
+  width: 295px;
+  &:not(:first-of-type) {
+    margin-top: 8px;
   }
 
   @media screen and (min-width: 768px) {
-    &:not(:last-of-type) {
-      margin-bottom: 14px;
+    width: 472px;
+    &:not(:first-of-type) {
+      margin-top: 14px;
     }
   }
 `;
@@ -86,7 +93,7 @@ export const StyledInput = styled(Field)`
   padding: 14px;
   border-radius: 12px;
   border: 1px solid transparent;
-  outline: ${theme.colors.primary};
+  outline: none;
   background-color: #262626;
   font-size: 12px;
   font-weight: 500;
@@ -110,12 +117,15 @@ export const StyledInput = styled(Field)`
 
   &.error {
     border: 1px solid ${theme.colors.error};
-    color: ${theme.colors.error};
+  }
+
+  &.success {
+    border: 1px solid ${theme.colors.status};
   }
 
   @media screen and (min-width: 768px) {
-    padding: 16px 14px;
     width: 472px;
+    padding: 16px 14px;
     font-size: 14px;
     line-height: 1.29;
     letter-spacing: -0.001em;
@@ -150,21 +160,43 @@ export const Label = styled.label`
   }
 `;
 
+export const EyeBtn = styled.button`
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 18px;
+`;
+
 export const SuccessMsg = styled.div`
   color: ${theme.colors.status};
   margin-left: 14px;
-  font-size: 12px;
+  margin-top: 4px;
+  font-size: 10px;
   font-weight: 500;
-  line-height: 1.17;
-  /* border: 1px solid ${theme.colors.status}; */
+  line-height: 1.2;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.17;
+  }
 `;
 
-export const ErrorMsg = styled.div`
+export const ErrorMsg = styled(ErrorMessage)`
   margin-left: 14px;
-  font-size: 12px;
+  margin-top: 4px;
+  font-size: 10px;
   font-weight: 500;
-  line-height: 1.17;
+  line-height: 1.2;
   color: ${theme.colors.error};
+
+  @media screen and (min-width: 768px) {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.17;
+  }
 `;
 
 export const ImgWrap = styled.div`
@@ -172,7 +204,7 @@ export const ImgWrap = styled.div`
   border-radius: 30px;
   background-color: ${theme.colors.secondary};
   @media screen and (min-width: 768px) {
-    display: none;
+    /* display: none; */
   }
   @media screen and (min-width: 1440px) {
     display: block;
@@ -204,7 +236,7 @@ const buttonStyles = css`
   color: ${theme.colors.secondary};
   transition: ${theme.transition};
 
-  @media screen and (min-widh: 768px) {
+  @media screen and (min-width: 768px) {
     padding: 16px;
     font-size: 20px;
     line-height: 1;
@@ -223,7 +255,7 @@ export const NavWrap = styled.div`
   align-items: center;
   margin-top: 20px;
 
-  @media screen and (min-widh: 768px) {
+  @media screen and (min-width: 768px) {
     margin-top: 82px;
     gap: 20px;
   }
@@ -233,7 +265,7 @@ export const BtnRegistration = styled.button`
   ${buttonStyles}
   width: 140px;
 
-  @media screen and (min-widh: 768px) {
+  @media screen and (min-width: 768px) {
     width: 225px;
   }
 `;
@@ -251,7 +283,7 @@ export const StyledLink = styled(NavLink)`
     color: ${theme.colors.primary};
   }
 
-  @media screen and (min-widh: 768px) {
+  @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: 1.29;
     letter-spacing: -0.001em;
