@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkread_journey=self.webpackChunkread_journey||[]).push([[272],{2272:function(n,e,r){r.r(e),r.d(e,{default:function(){return i}});var u=r(184),c=function(n){var e=n.children;return(0,u.jsx)("div",{children:e})},d=function(){return(0,u.jsx)("div",{children:"RecommendedBooks"})},i=function(){return(0,u.jsxs)("div",{children:[(0,u.jsx)(c,{}),(0,u.jsx)(d,{})]})}}}]);
+//# sourceMappingURL=272.367cd6bc.chunk.js.map

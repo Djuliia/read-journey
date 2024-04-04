@@ -1,13 +1,26 @@
 {
   "files": {
-    "main.css": "/read-journey/static/css/main.7acaea2f.css",
-    "main.js": "/read-journey/static/js/main.31f92fdf.js",
+    "main.css": "/read-journey/static/css/main.e25f44bd.css",
+    "main.js": "/read-journey/static/js/main.fd09d2ec.js",
+    "static/js/479.456d997c.chunk.js": "/read-journey/static/js/479.456d997c.chunk.js",
+    "static/js/272.367cd6bc.chunk.js": "/read-journey/static/js/272.367cd6bc.chunk.js",
+    "static/js/306.84225145.chunk.js": "/read-journey/static/js/306.84225145.chunk.js",
+    "static/media/iPhone_desktop2x.webp": "/read-journey/static/media/iPhone_desktop2x.df8a0bca574e1140914e.webp",
+    "static/media/Gilroy-Medium.woff": "/read-journey/static/media/Gilroy-Medium.2bc7f5d7ea77ee1bddb3.woff",
+    "static/media/Gilroy-Bold.woff": "/read-journey/static/media/Gilroy-Bold.5fb38b9fa452b5814397.woff",
+    "static/media/iPhone_mobile2x.webp": "/read-journey/static/media/iPhone_mobile2x.98c35c227ca1df0f3d06.webp",
+    "static/media/iPhone_desktop.webp": "/read-journey/static/media/iPhone_desktop.886a8b5fcb0ce6cdc60b.webp",
+    "static/media/sprite.svg": "/read-journey/static/media/sprite.6cc4d77ca6287a2a5a8219c145f605db.svg",
+    "static/media/iPhone_mobile.webp": "/read-journey/static/media/iPhone_mobile.ccb3ac85308d70f97578.webp",
     "index.html": "/read-journey/index.html",
-    "main.7acaea2f.css.map": "/read-journey/static/css/main.7acaea2f.css.map",
-    "main.31f92fdf.js.map": "/read-journey/static/js/main.31f92fdf.js.map"
+    "main.e25f44bd.css.map": "/read-journey/static/css/main.e25f44bd.css.map",
+    "main.fd09d2ec.js.map": "/read-journey/static/js/main.fd09d2ec.js.map",
+    "479.456d997c.chunk.js.map": "/read-journey/static/js/479.456d997c.chunk.js.map",
+    "272.367cd6bc.chunk.js.map": "/read-journey/static/js/272.367cd6bc.chunk.js.map",
+    "306.84225145.chunk.js.map": "/read-journey/static/js/306.84225145.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.31f92fdf.js"
+    "static/css/main.e25f44bd.css",
+    "static/js/main.fd09d2ec.js"
   ]
 }
