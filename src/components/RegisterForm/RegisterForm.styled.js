@@ -2,27 +2,25 @@ import { ErrorMessage, Field, Form } from 'formik';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { theme } from 'theme';
+import { containerStyles } from '../GlobalStyle';
 
 export const Container = styled.div`
-  margin: 0 auto;
-  padding: 20px;
-  width: 100%;
-  display: flex;
+  ${containerStyles}
   flex-direction: column;
   align-items: center;
   gap: 10px;
 
-  @media screen and (min-width: 375px) {
-    width: 375px;
+  /* @media screen and (max-width: 767px) {
+    max-width: 375px;
   }
 
   @media screen and (min-width: 768px) {
     padding: 32px;
-    width: 768px;
-  }
+    max-width: 768px;
+  } */
 
   @media screen and (min-width: 1440px) {
-    width: 1440px;
+    /* max-width: 1440px; */
     flex-direction: row;
     justify-content: center;
     gap: 16px;
@@ -30,20 +28,19 @@ export const Container = styled.div`
 `;
 
 export const RegisterWrap = styled.div`
-  /* width: 335px; */
   padding: 20px 20px 40px;
   border-radius: 30px;
   background-color: ${theme.colors.secondary};
 
   @media screen and (min-width: 768px) {
-    padding: 40px 168px 214px 64px;
-    /* min-height: 960px; */
-    /* width: 704px; */
+    padding: 40px 64px;
+    min-height: 960px;
+    width: 704px;
   }
   @media screen and (min-width: 1440px) {
     padding: 40px 64px;
-    /* height: 100%;
-    width: 100%; */
+    height: 100%;
+    width: 50%;
   }
 `;
 
@@ -90,7 +87,7 @@ export const InputWrap = styled.div`
 `;
 
 export const StyledInput = styled(Field)`
-  width: 295px;
+  width: 100%;
   padding: 14px;
   border-radius: 12px;
   border: 1px solid transparent;
@@ -125,7 +122,6 @@ export const StyledInput = styled(Field)`
   }
 
   @media screen and (min-width: 768px) {
-    width: 472px;
     padding: 16px 14px;
     font-size: 14px;
     line-height: 1.29;
@@ -199,30 +195,6 @@ export const ErrorMsg = styled(ErrorMessage)`
     line-height: 1.17;
   }
 `;
-
-export const ImgWrap = styled.div`
-  padding: 20px 40px 0px 40px;
-  border-radius: 30px;
-  background-color: ${theme.colors.secondary};
-  width: 100%;
-  @media screen and (min-width: 768px) {
-    /* display: none; */
-  }
-  @media screen and (min-width: 1440px) {
-    display: block;
-    padding: 80px 97px 0px 98px;
-  }
-
-  img {
-    margin: 0 auto;
-    width: 255px;
-    @media screen and (min-width: 1440px) {
-      width: 411px;
-    }
-  }
-`;
-
-export const Img = styled.picture``;
 
 const buttonStyles = css`
   display: flex;
@@ -304,3 +276,28 @@ export const StyledLink = styled(NavLink)`
     letter-spacing: -0.001em;
   }
 `;
+
+export const ImgWrap = styled.div`
+  padding: 20px 40px 0px 40px;
+  border-radius: 30px;
+  background-color: ${theme.colors.secondary};
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+  @media screen and (min-width: 1440px) {
+    display: block;
+    padding: 80px 97px 0px 98px;
+    width: 50%;
+  }
+
+  img {
+    margin: 0 auto;
+    width: 255px;
+    @media screen and (min-width: 1440px) {
+      width: 411px;
+    }
+  }
+`;
+
+export const Img = styled.picture``;

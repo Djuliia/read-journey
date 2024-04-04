@@ -57,7 +57,7 @@ export const LoginForm = () => {
           }}
         >
           {({ errors, touched }) => (
-            <StyledForm>
+            <StyledForm noValidate>
               <InputWrap>
                 <Label htmlFor="email">Mail:</Label>
                 <StyledInput
@@ -65,8 +65,8 @@ export const LoginForm = () => {
                   name="email"
                   id="email"
                   className={`special ${
-                    errors.email && touched.email ? 'error' : ''
-                  }`}
+                    touched.email && errors.email ? 'error' : ''
+                  } ${touched.email && !errors.email ? 'success' : ''}`}
                 />
               </InputWrap>
               {errors.email && touched.email && (

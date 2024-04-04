@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import 'modern-normalize';
 import { theme } from 'theme';
 
@@ -63,4 +63,23 @@ input:-webkit-autofill {
   -webkit-text-fill-color: ${theme.colors.primary} !important;
 }
 
+`;
+
+export const containerStyles = css`
+  margin: 0 auto;
+  padding: 20px;
+  ${'' /* display: flex; */}
+
+  @media screen and (max-width: 767px) {
+    max-width: 375px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 32px;
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 1440px;
+  }
 `;

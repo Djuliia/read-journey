@@ -62,7 +62,7 @@ export const RegisterForm = () => {
           }}
         >
           {({ errors, touched }) => (
-            <StyledForm>
+            <StyledForm noValidate>
               <InputWrap>
                 <Label htmlFor="name">Name:</Label>
                 <StyledInput
