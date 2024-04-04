@@ -30,19 +30,20 @@ export const Container = styled.div`
 `;
 
 export const RegisterWrap = styled.div`
-  width: 335px;
+  /* width: 335px; */
   padding: 20px 20px 40px;
   border-radius: 30px;
   background-color: ${theme.colors.secondary};
 
   @media screen and (min-width: 768px) {
-    padding: 40px 64px;
-    min-height: 960px;
+    padding: 40px 168px 214px 64px;
+    /* min-height: 960px; */
     /* width: 704px; */
   }
   @media screen and (min-width: 1440px) {
-    height: 100%;
-    width: 100%;
+    padding: 40px 64px;
+    /* height: 100%;
+    width: 100%; */
   }
 `;
 
@@ -203,6 +204,7 @@ export const ImgWrap = styled.div`
   padding: 20px 40px 0px 40px;
   border-radius: 30px;
   background-color: ${theme.colors.secondary};
+  width: 100%;
   @media screen and (min-width: 768px) {
     /* display: none; */
   }
@@ -212,6 +214,7 @@ export const ImgWrap = styled.div`
   }
 
   img {
+    margin: 0 auto;
     width: 255px;
     @media screen and (min-width: 1440px) {
       width: 411px;
@@ -264,6 +267,18 @@ export const NavWrap = styled.div`
 export const BtnRegistration = styled.button`
   ${buttonStyles}
   width: 140px;
+
+  @media screen and (min-width: 768px) {
+    width: 225px;
+  }
+`;
+
+export const BtnLogin = styled.button`
+  ${buttonStyles}
+  width: 131px;
+  @media screen and (min-width: 768px) {
+    width: 166px;
+  }
 
   @media screen and (min-width: 768px) {
     width: 225px;
