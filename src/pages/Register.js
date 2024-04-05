@@ -1,4 +1,4 @@
-import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { RegisterForm } from 'components/Auth/RegisterForm';
 
 const Register = () => {
   return (

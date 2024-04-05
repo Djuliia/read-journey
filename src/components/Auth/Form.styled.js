@@ -6,21 +6,12 @@ import { containerStyles } from '../GlobalStyle';
 
 export const Container = styled.div`
   ${containerStyles}
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 
-  /* @media screen and (max-width: 767px) {
-    max-width: 375px;
-  }
-
-  @media screen and (min-width: 768px) {
-    padding: 32px;
-    max-width: 768px;
-  } */
-
   @media screen and (min-width: 1440px) {
-    /* max-width: 1440px; */
     flex-direction: row;
     justify-content: center;
     gap: 16px;
@@ -35,12 +26,12 @@ export const RegisterWrap = styled.div`
   @media screen and (min-width: 768px) {
     padding: 40px 64px;
     min-height: 960px;
-    width: 704px;
+    min-width: 704px;
   }
   @media screen and (min-width: 1440px) {
     padding: 40px 64px;
-    height: 100%;
-    width: 50%;
+    min-height: 736px;
+    min-width: 50%;
   }
 `;
 
@@ -63,6 +54,10 @@ export const Title = styled.h1`
     font-size: 64px;
     line-height: 0.94;
     letter-spacing: 0.0003;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-top: 107px;
   }
 `;
 
@@ -109,6 +104,13 @@ export const StyledInput = styled(Field)`
     padding-left: 78px;
   }
 
+  &[name='title'] {
+    padding-left: 77px;
+  }
+  &[name='author'] {
+    padding-left: 85px;
+  }
+
   &:hover {
     border: 1px solid rgba(249, 249, 249, 0.1);
   }
@@ -134,6 +136,23 @@ export const StyledInput = styled(Field)`
     }
     &[name='password'] {
       padding-left: 86px;
+    }
+    &[name='title'] {
+      padding-left: 86px;
+      width: 295px;
+    }
+    &[name='author'] {
+      padding-left: 85px;
+      width: 295px;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    &[name='title'] {
+      width: 313px;
+    }
+    &[name='author'] {
+      width: 313px;
     }
   }
 `;
@@ -229,10 +248,16 @@ export const NavWrap = styled.div`
   gap: 14px;
   align-items: center;
   margin-top: 20px;
-
+  &.special {
+    margin-top: 72px;
+  }
   @media screen and (min-width: 768px) {
     margin-top: 82px;
     gap: 20px;
+
+    &.special {
+      margin-top: 146px;
+    }
   }
 `;
 
@@ -289,6 +314,7 @@ export const ImgWrap = styled.div`
     display: block;
     padding: 80px 97px 0px 98px;
     width: 50%;
+    min-height: 736px;
   }
 
   img {

@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import {
   BookItem,
   Container,
+  HelperWrap,
   SliderBtnWrap,
   SliderContainer,
   Title,
@@ -19,15 +20,35 @@ import book7 from '../../images/book (7).jpg';
 import book8 from '../../images/book (8).jpg';
 import book9 from '../../images/book (9).jpg';
 import book10 from '../../images/book (10).jpg';
+import sprite from '../../images/sprite.svg';
 
 export const RecommendedBooks = () => {
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    draggable: true,
+    slidesToShow: 5,
     slidesToScroll: 1,
+    rows: 2,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1439,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          rows: 1,
+        },
+      },
+    ],
   };
 
   let sliderRef = useRef(null);
@@ -40,7 +61,21 @@ export const RecommendedBooks = () => {
 
   return (
     <Container>
-      <Title>Recommended</Title>
+      <HelperWrap>
+        <Title>Recommended</Title>
+        <SliderBtnWrap>
+          <button onClick={previous}>
+            <svg>
+              <use href={`${sprite}#chevron-left`} />
+            </svg>
+          </button>
+          <button onClick={next}>
+            <svg>
+              <use href={`${sprite}#chevron-right`} />
+            </svg>
+          </button>
+        </SliderBtnWrap>
+      </HelperWrap>
       <SliderContainer>
         <Slider
           ref={slider => {
@@ -48,14 +83,6 @@ export const RecommendedBooks = () => {
           }}
           {...settings}
         >
-          <SliderBtnWrap>
-            <button className="button" onClick={previous}>
-              Prev
-            </button>
-            <button className="button" onClick={next}>
-              Next
-            </button>
-          </SliderBtnWrap>
           <div>
             <BookItem>
               <img src={book1} alt="book" />

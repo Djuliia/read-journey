@@ -1,8 +1,10 @@
-import * as Yup from 'yup';
-import { Formik } from 'formik';
 import { Logo } from 'components/Logo/Logo';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import sprite from '../../images/sprite.svg';
+
 import {
-  BtnLogin,
+  BtnRegistration,
   Container,
   ErrorMsg,
   EyeBtn,
@@ -16,16 +18,19 @@ import {
   StyledLink,
   SuccessMsg,
   Title,
-} from 'components/RegisterForm/RegisterForm.styled';
-import { useState } from 'react';
-import sprite from '../../images/sprite.svg';
+} from './Form.styled';
 import iPhoneDesktop from '../../images/iPhone_desktop.webp';
 import iPhoneDesktop2x from '../../images/iPhone_desktop2x.webp';
 import iPhoneMobile from '../../images/iPhone_mobile.webp';
 import iPhoneMobile2x from '../../images/iPhone_mobile2x.webp';
+import { useState } from 'react';
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, 'Minimum 3 characters')
+      .max(30, 'Maximum 20 characters')
+      .required('Name is required'),
     email: Yup.string()
       .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'Invalid email')
       .required('Email is required'),
@@ -48,7 +53,7 @@ export const LoginForm = () => {
           Expand your mind, reading <span>a book</span>
         </Title>
         <Formik
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ name: '', email: '', password: '' }}
           validationSchema={validationSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
@@ -59,14 +64,32 @@ export const LoginForm = () => {
           {({ errors, touched }) => (
             <StyledForm noValidate>
               <InputWrap>
+                <Label htmlFor="name">Name:</Label>
+                <StyledInput
+                  type="text"
+                  name="name"
+                  id="name"
+                  className={`special ${
+                    errors.name && touched.name ? 'error' : ''
+                  }`}
+                />
+              </InputWrap>
+              {errors.name && touched.name && (
+                <ErrorMsg name="name" component="div" />
+              )}
+              {touched.name && !errors.name && (
+                <SuccessMsg>Valid Name</SuccessMsg>
+              )}
+
+              <InputWrap>
                 <Label htmlFor="email">Mail:</Label>
                 <StyledInput
                   type="email"
                   name="email"
                   id="email"
                   className={`special ${
-                    touched.email && errors.email ? 'error' : ''
-                  } ${touched.email && !errors.email ? 'success' : ''}`}
+                    errors.email && touched.email ? 'error' : ''
+                  }`}
                 />
               </InputWrap>
               {errors.email && touched.email && (
@@ -75,6 +98,7 @@ export const LoginForm = () => {
               {touched.email && !errors.email && (
                 <SuccessMsg>Valid Email</SuccessMsg>
               )}
+
               <InputWrap>
                 <Label htmlFor="password">Password:</Label>
                 <StyledInput
@@ -113,8 +137,8 @@ export const LoginForm = () => {
               )}
 
               <NavWrap>
-                <BtnLogin type="submit">Log In</BtnLogin>
-                <StyledLink to="/">Don’t have an account? </StyledLink>
+                <BtnRegistration type="submit">Registration</BtnRegistration>
+                <StyledLink to="/login">Already have an account?</StyledLink>
               </NavWrap>
             </StyledForm>
           )}

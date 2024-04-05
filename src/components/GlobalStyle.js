@@ -24,7 +24,6 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    font-display: swap;
     color: ${theme.colors.primary};
     background-color: ${theme.colors.bg};
   }
@@ -68,7 +67,6 @@ input:-webkit-autofill {
 export const containerStyles = css`
   margin: 0 auto;
   padding: 20px;
-  ${'' /* display: flex; */}
 
   @media screen and (max-width: 767px) {
     max-width: 375px;

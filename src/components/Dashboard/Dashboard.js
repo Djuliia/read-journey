@@ -1,3 +1,5 @@
+import { Container } from './Dashboard.styled';
+
 export const Dashboard = ({ children }) => {
-  return <div>{children}</div>;
+  return <Container>{children}</Container>;
 };

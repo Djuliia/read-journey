@@ -4,6 +4,7 @@ import { theme } from 'theme';
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   margin-top: 10px;
 
@@ -39,31 +40,103 @@ export const Title = styled.h2`
 `;
 
 export const SliderBtnWrap = styled.div`
-  /* display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 
-  gap: 48px;
-  font-family: Biro Script Plus;
-  font-size: 24px;
-  line-height: 1;
   button {
-    margin-top: 24px;
-    color: ${theme.colors.primary};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
     background-color: transparent;
-    border: none;
-    transition: color ${theme.transition};
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    transition: border ${theme.transition};
     &:hover {
-      color: ${theme.colors.accent};
+      border: 1px solid ${theme.colors.primary};
     }
-  } */
+
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke: rgba(249, 249, 249, 0.2);
+      transition: fill ${theme.transition};
+      &:hover {
+        stroke: ${theme.colors.primary};
+      }
+    }
+    @media screen and (min-width: 768px) {
+      width: 40px;
+      height: 40px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 `;
 
 export const SliderContainer = styled.div`
   width: 295px;
+  .slick-slider {
+    overflow: hidden;
+    .slick-track {
+      margin: inherit;
+    }
+
+    .slick-list {
+      width: calc(100% + 21px);
+    }
+  }
   @media screen and (min-width: 768px) {
-    width: 592px;
+    width: 624px;
+    .slick-list {
+      width: calc(100% + 25px);
+    }
   }
   @media screen and (min-width: 1280px) {
-    width: 1032px;
+    width: 807px;
   }
 `;
-export const BookItem = styled.div``;
+
+export const BookItem = styled.div`
+  margin-right: 21px;
+  width: 137px;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 25px;
+    margin-top: 27px;
+  }
+
+  img {
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.29;
+    margin-bottom: 2px;
+  }
+
+  p {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: ${theme.colors.light};
+  }
+`;
+
+export const HelperWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: -7px;
+  }
+`;
