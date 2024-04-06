@@ -44,7 +44,7 @@ export const Header = () => {
                 <StyledLink to="/library">My library</StyledLink>
               </li>
             </NavMobile>
-            <BtnLogoutMobile>Log Out</BtnLogoutMobile>
+            <BtnLogoutMobile>Log out</BtnLogoutMobile>
           </MobileMenu>
         ) : (
           <UserActions>

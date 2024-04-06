@@ -94,6 +94,9 @@ export const StyledInput = styled(Field)`
   letter-spacing: -0.002em;
   color: ${theme.colors.primary};
   transition: ${theme.transition};
+  &::placeholder {
+    color: ${theme.colors.primary};
+  }
   &[name='name'] {
     padding-left: 59px;
   }
@@ -103,22 +106,22 @@ export const StyledInput = styled(Field)`
   &[name='password'] {
     padding-left: 78px;
   }
-
   &[name='title'] {
     padding-left: 77px;
   }
   &[name='author'] {
     padding-left: 85px;
   }
+  &[name='pages'] {
+    padding-left: 119px;
+  }
 
   &:hover {
     border: 1px solid rgba(249, 249, 249, 0.1);
   }
-
   &.error {
     border: 1px solid ${theme.colors.error};
   }
-
   &.success {
     border: 1px solid ${theme.colors.status};
   }
@@ -142,7 +145,11 @@ export const StyledInput = styled(Field)`
       width: 295px;
     }
     &[name='author'] {
-      padding-left: 85px;
+      padding-left: 95px;
+      width: 295px;
+    }
+    &[name='pages'] {
+      padding-left: 135px;
       width: 295px;
     }
   }
@@ -152,6 +159,9 @@ export const StyledInput = styled(Field)`
       width: 313px;
     }
     &[name='author'] {
+      width: 313px;
+    }
+    &[name='pages'] {
       width: 313px;
     }
   }

@@ -29,12 +29,22 @@ export const Filters = () => {
           <Form>
             <FormTitle>Filters:</FormTitle>
             <InputWrap>
-              <Label htmlFor="title">Enter text:</Label>
-              <StyledInput type="text" name="title" id="title" />
+              <Label htmlFor="title">Book title:</Label>
+              <StyledInput
+                type="text"
+                name="title"
+                id="title"
+                placeholder="Enter text"
+              />
             </InputWrap>
             <InputWrap>
-              <Label htmlFor="author">Enter text:</Label>
-              <StyledInput type="text" name="author" id="author" />
+              <Label htmlFor="author">The author:</Label>
+              <StyledInput
+                type="text"
+                name="author"
+                id="author"
+                placeholder="Enter text"
+              />
             </InputWrap>
             <BtnApply type="submit">To apply</BtnApply>
           </Form>

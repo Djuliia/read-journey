@@ -21,7 +21,8 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1216px;
+    /* width: 1216px; */
+    min-width: 1376px;
   }
 `;
 
@@ -47,7 +48,7 @@ export const UserBar = styled.div`
 
 export const BurgerMenuBtn = styled.button`
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   top: 22px;
   right: 20px;
   display: block;
@@ -62,11 +63,10 @@ export const BurgerMenuBtn = styled.button`
 export const MobileMenu = styled.div`
   position: fixed;
   top: 0;
-  right: 0;
+  right: ${({ $isOpen }) => ($isOpen ? '0' : '-200px')};
   height: 100%;
   width: 200px;
   padding: 34px 40px 40px;
-  z-index: 1;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -75,6 +75,20 @@ export const MobileMenu = styled.div`
   transition: opacity ${theme.transition};
   opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
   pointer-events: ${({ $isOpen }) => ($isOpen ? 'auto' : 'none')};
+  z-index: 4;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.6);
+    /* z-index: 1; */
+    opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
+    transition: opacity 0.3s ease;
+  }
 
   @media screen and (min-width: 768px) {
     display: none;
