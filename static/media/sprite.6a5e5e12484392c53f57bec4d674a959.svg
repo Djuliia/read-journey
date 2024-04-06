@@ -20,10 +20,10 @@
 <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.0800" d="M1.333 1.333l29.333 29.333"></path>
 </symbol>
 <symbol id="trash" viewBox="0 0 32 32">
-<path fill="none" stroke="#686868" style="stroke: var(--color4, #686868)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M4 8h24"></path>
-<path fill="none" stroke="#686868" style="stroke: var(--color4, #686868)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M25.334 8v18.667c0 0.707-0.281 1.386-0.781 1.886s-1.178 0.781-1.886 0.781h-13.333c-0.707 0-1.386-0.281-1.886-0.781s-0.781-1.178-0.781-1.886v-18.667M10.667 8v-2.667c0-0.707 0.281-1.385 0.781-1.886s1.178-0.781 1.886-0.781h5.333c0.707 0 1.386 0.281 1.886 0.781s0.781 1.178 0.781 1.886v2.667"></path>
-<path fill="none" stroke="#686868" style="stroke: var(--color4, #686868)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M13.333 14.667v8"></path>
-<path fill="none" stroke="#686868" style="stroke: var(--color4, #686868)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M18.667 14.667v8"></path>
+<path  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M4 8h24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M25.334 8v18.667c0 0.707-0.281 1.386-0.781 1.886s-1.178 0.781-1.886 0.781h-13.333c-0.707 0-1.386-0.281-1.886-0.781s-0.781-1.178-0.781-1.886v-18.667M10.667 8v-2.667c0-0.707 0.281-1.385 0.781-1.886s1.178-0.781 1.886-0.781h5.333c0.707 0 1.386 0.281 1.886 0.781s0.781 1.178 0.781 1.886v2.667"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M13.333 14.667v8"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M18.667 14.667v8"></path>
 </symbol>
 <symbol id="pie-chart" viewBox="0 0 32 32">
 <path fill="none" opacity="0.8" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4" d="M22.933 18.667c0.369 0 0.554 0 0.704 0.082 0.123 0.068 0.238 0.195 0.293 0.324 0.067 0.157 0.050 0.324 0.016 0.659-0.174 1.733-0.77 3.404-1.744 4.861-1.172 1.754-2.838 3.121-4.787 3.929s-4.094 1.019-6.163 0.607c-2.069-0.412-3.97-1.427-5.462-2.919s-2.508-3.392-2.919-5.462c-0.412-2.069-0.2-4.214 0.607-6.163s2.175-3.615 3.929-4.787c1.457-0.974 3.128-1.57 4.861-1.744 0.334-0.034 0.502-0.050 0.659 0.016 0.13 0.055 0.257 0.17 0.324 0.293 0.082 0.15 0.082 0.334 0.082 0.704v8.533c0 0.373 0 0.56 0.073 0.703 0.064 0.125 0.166 0.227 0.291 0.291 0.143 0.073 0.329 0.073 0.703 0.073h8.533z"></path>
