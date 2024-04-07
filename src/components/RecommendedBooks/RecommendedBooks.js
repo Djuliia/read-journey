@@ -176,7 +176,7 @@ export const RecommendedBooks = () => {
         </SliderContainer>
       </Container>
       {isModalOpen && (
-        <PopUp isOpen={isModalOpen} onClose={closeModal}>
+        <PopUp isOpen={isModalOpen} onClose={closeModal} fromRecommended>
           <AboutBookPopup book={selectedBook} />
         </PopUp>
       )}

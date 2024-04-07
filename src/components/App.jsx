@@ -8,6 +8,7 @@ const Register = lazy(() => import('../pages/Register'));
 const Login = lazy(() => import('../pages/Login'));
 const Recommended = lazy(() => import('../pages/Recommended'));
 const Library = lazy(() => import('../pages/Library'));
+const Reading = lazy(() => import('../pages/Reading'));
 const ErrorPage = lazy(() => import('../pages/Error'));
 
 export const App = () => {
@@ -20,6 +21,7 @@ export const App = () => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="library" element={<Library />} />
+        <Route path="reading" element={<Reading />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>

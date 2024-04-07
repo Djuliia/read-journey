@@ -9,7 +9,7 @@ export const LogoWrap = styled.div`
     font-size: 18px;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: 0.001em;
+    letter-spacing: 0.02em;
 
     @media screen and (max-width: 768px) {
       display: none;

@@ -41,7 +41,7 @@ export const Title = styled.h1`
   font-size: 32px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.0005em;
+  letter-spacing: 0.02em;
 
   span {
     color: rgba(227, 227, 227, 0.5);
@@ -53,7 +53,7 @@ export const Title = styled.h1`
     margin-bottom: 40px;
     font-size: 64px;
     line-height: 0.94;
-    letter-spacing: 0.0003;
+    letter-spacing: 0.02em;
   }
 
   @media screen and (min-width: 1440px) {
@@ -91,7 +91,7 @@ export const StyledInput = styled(Field)`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
-  letter-spacing: -0.002em;
+  letter-spacing: -0.02em;
   color: ${theme.colors.primary};
   transition: ${theme.transition};
   &::placeholder {
@@ -130,7 +130,7 @@ export const StyledInput = styled(Field)`
     padding: 16px 14px;
     font-size: 14px;
     line-height: 1.29;
-    letter-spacing: -0.001em;
+    letter-spacing: -0.02em;
     &[name='name'] {
       padding-left: 65px;
     }
@@ -182,7 +182,7 @@ export const Label = styled.label`
   @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: 1.29;
-    letter-spacing: -0.001em;
+    letter-spacing: -0.02em;
   }
 `;
 
@@ -236,7 +236,7 @@ const buttonStyles = css`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.29;
-  letter-spacing: 0.001em;
+  letter-spacing: 0.02em;
   color: ${theme.colors.secondary};
   transition: ${theme.transition};
 
@@ -296,7 +296,7 @@ export const StyledLink = styled(NavLink)`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.17;
-  letter-spacing: -0.002em;
+  letter-spacing: -0.02em;
   text-decoration: underline;
   color: ${theme.colors.light};
   transition: ${theme.transition};
@@ -308,7 +308,7 @@ export const StyledLink = styled(NavLink)`
   @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: 1.29;
-    letter-spacing: -0.001em;
+    letter-spacing: -0.02em;
   }
 `;
 

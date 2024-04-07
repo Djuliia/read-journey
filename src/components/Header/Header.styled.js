@@ -155,7 +155,7 @@ const btnLogoutStyles = css`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.29;
-  letter-spacing: 0.001em;
+  letter-spacing: 0.02em;
   color: ${theme.colors.primary};
   transition: ${theme.transition};
 

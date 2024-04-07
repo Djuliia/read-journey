@@ -93,7 +93,7 @@ export const AddBook = () => {
                 <InputWrap>
                   <Label htmlFor="pages">Number of pages:</Label>
                   <StyledInput
-                    type="text"
+                    type="number"
                     name="pages"
                     id="pages"
                     placeholder="0"

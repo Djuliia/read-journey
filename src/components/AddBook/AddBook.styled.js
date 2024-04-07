@@ -34,7 +34,7 @@ export const BookList = styled.ul`
   font-size: 10px;
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.001em;
+  letter-spacing: -0.02em;
 `;
 
 export const BookItem = styled.li`

@@ -30,6 +30,9 @@ export default function HomePage() {
         <li>
           <NavLink to="/library">My Library</NavLink>
         </li>
+        <li>
+          <NavLink to="/reading">My reading</NavLink>
+        </li>
 
         <li>
           <NavLink to="*">404</NavLink>

@@ -1,12 +1,20 @@
+import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
 import { AboutBookWrap, BookItem, BtnAdd } from './AboutBookPopup.styled';
 
-// import { useDispatch } from 'react-redux';
-
-export const AboutBookPopup = ({ book }) => {
+export const AboutBookPopup = ({ book, fromLibrary, fromRecommended }) => {
   // const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleAddToLibrary = () => {
-    // dispatch(addToLibrary(book));
+  const handleAction = () => {
+    if (fromLibrary) {
+      navigate('/reading');
+    } else {
+      if (fromRecommended) {
+        console.log(fromRecommended);
+        // dispatch(addToLibrary(book));
+      }
+    }
   };
 
   return (
@@ -17,7 +25,9 @@ export const AboutBookPopup = ({ book }) => {
         <p>Author</p>
         <span>pages</span>
       </BookItem>
-      <BtnAdd onClick={handleAddToLibrary}>Add to library</BtnAdd>
+      <BtnAdd onClick={handleAction}>
+        {fromLibrary ? 'Start reading' : 'Add to library'}
+      </BtnAdd>
     </AboutBookWrap>
   );
 };

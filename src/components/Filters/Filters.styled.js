@@ -88,7 +88,7 @@ export const DescItem = styled.li`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.29;
-  letter-spacing: -0.001em;
+  letter-spacing: -0.02em;
 
   @media screen and (min-width: 768px) {
     gap: 10px;
@@ -124,7 +124,7 @@ export const DescItem = styled.li`
     font-size: 14px;
     font-weight: 700;
     line-height: 1.29;
-    letter-spacing: 0.001em;
+    letter-spacing: 0.02em;
   }
   span {
     color: ${theme.colors.light};
