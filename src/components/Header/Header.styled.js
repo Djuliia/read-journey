@@ -12,12 +12,12 @@ export const Container = styled.div`
   border-radius: 15px;
   @media screen and (max-width: 767px) {
     padding-right: 58px;
-    width: 335px;
+    min-width: 335px;
   }
 
   @media screen and (min-width: 768px) {
     padding: 16px;
-    width: 704px;
+    min-width: 704px;
   }
 
   @media screen and (min-width: 1440px) {

@@ -7,13 +7,10 @@ import {
   InputWrap,
 } from 'components/Filters/Filters.styled';
 import { ErrorMsg, Label, StyledInput } from 'components/Auth/Form.styled';
-import { useState } from 'react';
 import { Progress } from './Progress';
 import { Diary } from '../Diary/Diary';
 
-export const AddReading = () => {
-  const [isStart, setIsStart] = useState(false);
-
+export const AddReading = ({ isStart, handleStart }) => {
   const handleSubmit = async values => {
     console.log(values);
   };
@@ -47,7 +44,7 @@ export const AddReading = () => {
               <ErrorMsg name="page" component="div" />
             )}
             {
-              <BtnApply type="submit" onClick={() => setIsStart(prev => !prev)}>
+              <BtnApply type="submit" onClick={handleStart}>
                 {isStart ? 'To stop' : 'To start'}
               </BtnApply>
             }

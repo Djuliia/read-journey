@@ -7,6 +7,7 @@ import { theme } from 'theme';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import { Toaster } from 'react-hot-toast';
 import { GlobalStyle } from 'components/GlobalStyle';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter basename={'/read-journey'}>
         <ThemeProvider theme={theme}>
           <App />
+          <Toaster />
           <GlobalStyle />
         </ThemeProvider>
       </BrowserRouter>

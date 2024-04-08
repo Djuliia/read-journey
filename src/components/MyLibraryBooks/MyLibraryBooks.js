@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import {
   AddedItem,
   AddedList,
@@ -17,6 +18,9 @@ import { AboutBookPopup } from 'components/PopUp/AboutBookPopup';
 
 export const MyLibraryBooks = ({ book }) => {
   const isBook = true;
+  const handleDelete = () => {
+    toast.success('The book is deleted');
+  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
@@ -55,14 +59,14 @@ export const MyLibraryBooks = ({ book }) => {
           </NoBookWrap>
         ) : (
           <AddedList>
-            <AddedItem onClick={() => openModal(book1)}>
-              <img src={book1} alt="book" />
+            <AddedItem>
+              <img src={book1} alt="book" onClick={() => openModal(book1)} />
               <InfoWrap>
                 <div>
                   <h3>Title</h3>
                   <p>Author</p>
                 </div>
-                <button>
+                <button onClick={handleDelete}>
                   <svg width="14" height="14">
                     <use href={`${sprite}#trash`} />
                   </svg>
@@ -76,7 +80,7 @@ export const MyLibraryBooks = ({ book }) => {
                   <h3>Title</h3>
                   <p>Author</p>
                 </div>
-                <button>
+                <button onClick={handleDelete}>
                   <svg width="14" height="14">
                     <use href={`${sprite}#trash`} />
                   </svg>

@@ -65,16 +65,29 @@ export const BookWrap = styled.div`
       width: 50px;
       height: 50px;
     }
-    div {
-      width: 30px;
-      height: 30px;
-      background: #e90516;
-      border-radius: 50%;
+  }
+`;
 
-      @media screen and (min-width: 768px) {
-        width: 40px;
-        height: 40px;
-      }
-    }
+export const BtnStart = styled.div`
+  width: 30px;
+  height: 30px;
+  background: #e90516;
+  border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+export const BtnStop = styled.div`
+  width: 15px;
+  height: 15px;
+  background: #e90516;
+  border-radius: 3px;
+
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 `;

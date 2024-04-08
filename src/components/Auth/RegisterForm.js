@@ -70,16 +70,16 @@ export const RegisterForm = () => {
                   name="name"
                   id="name"
                   className={`special ${
-                    errors.name && touched.name ? 'error' : ''
-                  }`}
+                    touched.name && errors.name ? 'error' : ''
+                  } ${touched.name && !errors.name ? 'success' : ''}`}
                 />
               </InputWrap>
               {errors.name && touched.name && (
                 <ErrorMsg name="name" component="div" />
               )}
-              {touched.name && !errors.name && (
+              {/* {touched.name && !errors.name && (
                 <SuccessMsg>Valid Name</SuccessMsg>
-              )}
+              )} */}
 
               <InputWrap>
                 <Label htmlFor="email">Mail:</Label>
@@ -88,16 +88,16 @@ export const RegisterForm = () => {
                   name="email"
                   id="email"
                   className={`special ${
-                    errors.email && touched.email ? 'error' : ''
-                  }`}
+                    touched.email && errors.email ? 'error' : ''
+                  } ${touched.email && !errors.email ? 'success' : ''}`}
                 />
               </InputWrap>
               {errors.email && touched.email && (
                 <ErrorMsg name="email" component="div" />
               )}
-              {touched.email && !errors.email && (
+              {/* {touched.email && !errors.email && (
                 <SuccessMsg>Valid Email</SuccessMsg>
-              )}
+              )} */}
 
               <InputWrap>
                 <Label htmlFor="password">Password:</Label>
