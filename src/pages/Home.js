@@ -13,10 +13,8 @@ const TempList = styled.ul`
 `;
 
 export default function HomePage() {
-  // return <Recommended />;
   return (
     <>
-      <h2>Temporary Navigation</h2>
       <TempList>
         <li>
           <NavLink to="/register">Register</NavLink>

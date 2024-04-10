@@ -22,8 +22,7 @@ export const Filters = () => {
         <Formik
           initialValues={{ title: '', author: '' }}
           onSubmit={values => {
-            console.log(values);
-            //search
+            // console.log(values);
           }}
         >
           <Form>

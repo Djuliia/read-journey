@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'http://localhost:8000';
+// https://readjorney.b.goit.study.api/
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -16,15 +16,11 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post('/users/signup', credentials);
+      const response = await axios.post('/users/register', credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      if (error.response && error.response.status === 409) {
-        toast.error('User already exists!');
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
@@ -33,15 +29,11 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post('/users/signin', credentials);
+      const response = await axios.post('/users/login', credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        toast.error('User is unauthorized!');
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
@@ -51,7 +43,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/signout');
     clearAuthHeader();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.response.data);
   }
 });
 

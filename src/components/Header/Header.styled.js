@@ -27,30 +27,47 @@ export const Container = styled.div`
 `;
 
 export const UserBar = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid rgba(249, 249, 249, 0.2);
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: #262626;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #262626;
+    @media screen and (min-width: 768px) {
+      margin-right: 8px;
+    }
+  }
 
   span {
     font-weight: 700;
     line-height: 1;
   }
 
-  @media screen and (min-width: 768px) {
-    margin-right: 16px;
+  h4 {
+    display: none;
+    @media screen and (min-width: 1440px) {
+      display: block;
+      font-size: 16px;
+      line-height: 1.13;
+      letter-spacing: -0.02em;
+      margin-right: 16px;
+    }
   }
 `;
 
 export const BurgerMenuBtn = styled.button`
-  position: absolute;
+  position: ${({ $isOpen }) => ($isOpen ? 'fixed' : 'absolute')};
   z-index: 10;
-  top: 22px;
-  right: 20px;
+  top: ${({ $isOpen }) => ($isOpen ? '34px' : '22px')};
+  right: ${({ $isOpen }) => ($isOpen ? '40px' : '20px')};
   display: block;
   border: none;
   background-color: transparent;
@@ -168,6 +185,7 @@ const btnLogoutStyles = css`
 export const BtnLogoutMobile = styled.button`
   ${btnLogoutStyles}
   align-self: flex-end;
+  z-index: 10;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -182,13 +200,5 @@ export const BtnLogout = styled.button`
   @media screen and (min-width: 768px) {
     ${btnLogoutStyles}
     display: flex;
-  }
-`;
-
-export const UserActions = styled.div`
-  @media screen and (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
   }
 `;
