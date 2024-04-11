@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { Logo } from 'components/Logo/Logo';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -46,46 +45,42 @@ export const RegisterForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const isLoading = useSelector(selectIsLoading);
 
   const handleTogglePassword = () => {
     setShowPassword(prevState => !prevState);
   };
 
-  const handleSubmit = ({ name, email, password }, { resetForm }) => {
-    dispatch(register({ name, email, password }));
-    resetForm();
-  };
-  // try {
-  //   const action = await dispatch(
-  //     register({
-  //       name,
-  //       email,
-  //       password,
-  //     })
-  //   );
+  const handleSubmit = async ({ name, email, password }, { resetForm }) => {
+    try {
+      const action = await dispatch(
+        register({
+          name,
+          email,
+          password,
+        })
+      );
 
-  //   if (register.fulfilled.match(action)) {
-  //     const { user } = action.payload;
-  //     if (user) {
-  //       toast.success('Registration successful');
-  //       navigate('/recommended');
-  //       resetForm();
-  //       return;
-  //     }
-  //   } else if (register.rejected.match(action)) {
-  //     const payload = action.payload;
-  //     if (payload && payload.message === 'Such email already exists') {
-  //       toast.error('User with this email already exists');
-  //     } else {
-  //       toast.error('Registration failed');
-  //     }
-  //   }
-  // } catch (error) {
-  //   toast.error('Registration error:', error.message);
-  // }
-  // };
+      if (register.fulfilled.match(action)) {
+        const { user } = action.payload;
+        if (user) {
+          toast.success('Registration successful');
+          resetForm();
+          return;
+        }
+      } else if (register.rejected.match(action)) {
+        const error = action.error;
+        if (error && error.message === 'Such email already exists') {
+          toast.error('User with this email already exists');
+        } else {
+          toast.error('Registration failed');
+        }
+      }
+    } catch (error) {
+      toast.error('Registration error:', error.message);
+      console.log('Register response:');
+    }
+  };
 
   return (
     <Container>
