@@ -22,7 +22,7 @@ export const register = createAsyncThunk(
       if (error.response && error.response.status === 409) {
         throw new Error('Such email already exists');
       }
-      throw new Error('Registration failed');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -35,6 +35,9 @@ export const logIn = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 401) {
+        throw new Error('Email or password invalid');
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

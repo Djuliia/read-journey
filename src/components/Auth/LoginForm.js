@@ -62,13 +62,12 @@ export const LoginForm = () => {
         const { user } = action.payload;
         if (user) {
           toast.success('Login successful');
-          navigate('/recommended');
           resetForm();
           return;
         }
       } else if (logIn.rejected.match(action)) {
-        const payload = action.payload;
-        if (payload && payload.message === 'Email or password invalid') {
+        const error = action.error;
+        if (error && error.message === 'Email or password invalid') {
           toast.error('Email or password invalid');
         } else {
           toast.error('Login failed');
