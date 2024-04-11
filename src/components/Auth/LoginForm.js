@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Logo } from 'components/Logo/Logo';
 import {
@@ -42,7 +41,6 @@ export const LoginForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const isLoading = useSelector(selectIsLoading);
 
   const handleTogglePassword = () => {
