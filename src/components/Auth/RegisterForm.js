@@ -53,36 +53,39 @@ export const RegisterForm = () => {
     setShowPassword(prevState => !prevState);
   };
 
-  const handleSubmit = async ({ name, email, password }, { resetForm }) => {
-    try {
-      const action = await dispatch(
-        register({
-          name,
-          email,
-          password,
-        })
-      );
-
-      if (register.fulfilled.match(action)) {
-        const { user } = action.payload;
-        if (user) {
-          toast.success('Registration successful');
-          navigate('/recommended');
-          resetForm();
-          return;
-        }
-      } else if (register.rejected.match(action)) {
-        const payload = action.payload;
-        if (payload && payload.message === 'Such email already exists') {
-          toast.error('User with this email already exists');
-        } else {
-          toast.error('Registration failed');
-        }
-      }
-    } catch (error) {
-      toast.error('Registration error:', error.message);
-    }
+  const handleSubmit = ({ name, email, password }, { resetForm }) => {
+    dispatch(register({ name, email, password }));
+    resetForm();
   };
+  // try {
+  //   const action = await dispatch(
+  //     register({
+  //       name,
+  //       email,
+  //       password,
+  //     })
+  //   );
+
+  //   if (register.fulfilled.match(action)) {
+  //     const { user } = action.payload;
+  //     if (user) {
+  //       toast.success('Registration successful');
+  //       navigate('/recommended');
+  //       resetForm();
+  //       return;
+  //     }
+  //   } else if (register.rejected.match(action)) {
+  //     const payload = action.payload;
+  //     if (payload && payload.message === 'Such email already exists') {
+  //       toast.error('User with this email already exists');
+  //     } else {
+  //       toast.error('Registration failed');
+  //     }
+  //   }
+  // } catch (error) {
+  //   toast.error('Registration error:', error.message);
+  // }
+  // };
 
   return (
     <Container>
