@@ -27,20 +27,24 @@ import {
 import { useState } from 'react';
 import { PopUp } from 'components/PopUp/PopUp';
 import { AddBookPopup } from 'components/PopUp/AddBookPopup';
+import { addFromFilter } from '../../redux/books/operations';
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 export const AddBook = () => {
   const validationSchema = Yup.object().shape({
     title: Yup.string().required('Book title is required'),
     author: Yup.string().required('Author is required'),
-    pages: Yup.number()
+    totalPages: Yup.number()
       .required('Number of pages is required')
       .positive('Number of pages must be positive')
       .integer('Number of pages must be an integer'),
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const openModal = book => {
+  const openModal = () => {
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -50,22 +54,35 @@ export const AddBook = () => {
     document.body.style.overflow = 'auto';
   };
 
+  const handleSubmit = async values => {
+    try {
+      const action = await dispatch(addFromFilter(values));
+      if (addFromFilter.fulfilled.match(action)) {
+        openModal();
+      } else if (addFromFilter.rejected.match(action)) {
+        const error = action.error;
+        if (error && error.message === 'Such book already exists') {
+          toast.error('This book already exists in your library');
+          return;
+        }
+      }
+    } catch (error) {
+      toast.error('Failed to add book: ', error.message);
+    }
+  };
+
   return (
     <>
       <Container>
         <div>
           <Formik
-            initialValues={{ title: '', author: '', pages: '' }}
+            initialValues={{ title: '', author: '', totalPages: '' }}
             validationSchema={validationSchema}
-            onSubmit={values => {
-              console.log(values);
-              openModal();
-              //search
-            }}
+            onSubmit={handleSubmit}
           >
             {({ errors, touched }) => (
               <Form>
-                <FormTitle>Filters:</FormTitle>
+                <FormTitle>Create your library:</FormTitle>
                 <InputWrap>
                   <Label htmlFor="title">Book title:</Label>
                   <StyledInput
@@ -94,13 +111,13 @@ export const AddBook = () => {
                   <Label htmlFor="pages">Number of pages:</Label>
                   <StyledInput
                     type="number"
-                    name="pages"
+                    name="totalPages"
                     id="pages"
                     placeholder="0"
                   />
                 </InputWrap>
                 {errors.pages && touched.pages && (
-                  <ErrorMsg name="pages" component="div" />
+                  <ErrorMsg name="totalPages" component="div" />
                 )}
                 <BtnApply type="submit">Add book</BtnApply>
               </Form>

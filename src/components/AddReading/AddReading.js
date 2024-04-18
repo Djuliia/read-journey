@@ -16,7 +16,7 @@ export const AddReading = ({ isStart, handleStart }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    pages: Yup.number()
+    totalPages: Yup.number()
       .required('Number of pages is required')
       .positive('Number of pages must be positive')
       .integer('Number of pages must be an integer'),
@@ -24,7 +24,7 @@ export const AddReading = ({ isStart, handleStart }) => {
   return (
     <Container>
       <Formik
-        initialValues={{ pages: '' }}
+        initialValues={{ totalPages: '' }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
@@ -35,13 +35,13 @@ export const AddReading = ({ isStart, handleStart }) => {
               <Label htmlFor="pages">Number of pages:</Label>
               <StyledInput
                 type="number"
-                name="pages"
+                name="totalPages"
                 id="pages"
                 placeholder="0"
               />
             </InputWrap>
-            {errors.pages && touched.pages && (
-              <ErrorMsg name="page" component="div" />
+            {errors.totalPages && touched.totalPages && (
+              <ErrorMsg name="totalPages" component="div" />
             )}
             {
               <BtnApply type="submit" onClick={handleStart}>

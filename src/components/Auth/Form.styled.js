@@ -112,7 +112,7 @@ export const StyledInput = styled(Field)`
   &[name='author'] {
     padding-left: 85px;
   }
-  &[name='pages'] {
+  &[name='totalPages'] {
     padding-left: 119px;
   }
 
@@ -148,7 +148,7 @@ export const StyledInput = styled(Field)`
       padding-left: 95px;
       width: 295px;
     }
-    &[name='pages'] {
+    &[name='totalPages'] {
       padding-left: 135px;
       width: 295px;
     }
@@ -161,7 +161,7 @@ export const StyledInput = styled(Field)`
     &[name='author'] {
       width: 313px;
     }
-    &[name='pages'] {
+    &[name='totalPages'] {
       width: 313px;
     }
   }

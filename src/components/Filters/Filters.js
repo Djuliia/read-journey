@@ -15,15 +15,13 @@ import {
 import sprite from '../../images/sprite.svg';
 import { NavLink } from 'react-router-dom';
 
-export const Filters = () => {
+export const Filters = ({ handleSubmit }) => {
   return (
     <Container>
       <div>
         <Formik
           initialValues={{ title: '', author: '' }}
-          onSubmit={values => {
-            // console.log(values);
-          }}
+          onSubmit={handleSubmit}
         >
           <Form>
             <FormTitle>Filters:</FormTitle>

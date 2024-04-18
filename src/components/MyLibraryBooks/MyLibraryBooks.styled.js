@@ -123,8 +123,10 @@ export const AddedList = styled.ul`
 `;
 
 export const AddedItem = styled.li`
+  width: 137px;
   img {
     width: 137px;
+    height: 208px;
     border-radius: 8px;
     margin-bottom: 8px;
   }
@@ -134,17 +136,28 @@ export const InfoWrap = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  div {
+    width: 89px;
+  }
+
   h3 {
     margin-bottom: 2px;
     font-size: 14px;
     font-weight: 700;
     line-height: 1.29;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   p {
     font-size: 10px;
     font-weight: 500;
     line-height: 1.29;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: ${theme.colors.light};
   }
 
   button {

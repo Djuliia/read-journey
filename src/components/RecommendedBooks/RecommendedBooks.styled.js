@@ -55,18 +55,18 @@ export const SliderBtnWrap = styled.div`
     background-color: transparent;
     border: 1px solid rgba(249, 249, 249, 0.2);
     transition: border ${theme.transition};
-    &:hover {
+    /* &:hover {
       border: 1px solid ${theme.colors.primary};
-    }
+    } */
 
     svg {
       width: 16px;
       height: 16px;
-      stroke: rgba(249, 249, 249, 0.2);
+      /* stroke: rgba(249, 249, 249, 0.2); */
       transition: fill ${theme.transition};
-      &:hover {
+      /* &:hover {
         stroke: ${theme.colors.primary};
-      }
+      } */
     }
     @media screen and (min-width: 768px) {
       width: 40px;
@@ -115,6 +115,8 @@ export const BookItem = styled.div`
   img {
     border-radius: 8px;
     margin-bottom: 8px;
+    height: 208px;
+    width: 137px;
   }
 
   h3 {
@@ -122,6 +124,9 @@ export const BookItem = styled.div`
     font-weight: 700;
     line-height: 1.29;
     margin-bottom: 2px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   p {
@@ -129,6 +134,9 @@ export const BookItem = styled.div`
     font-weight: 500;
     line-height: 1.2;
     color: ${theme.colors.light};
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 `;
 

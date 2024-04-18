@@ -2,13 +2,17 @@ import {
   Container,
   Title,
 } from 'components/MyLibraryBooks/MyLibraryBooks.styled';
-import book1 from '../../images/book (1).jpg';
+
 import { BookWrap, BtnStart, BtnStop } from './MyReading.styled';
 import { useState } from 'react';
 import { PopUp } from 'components/PopUp/PopUp';
 import { FinishedReadPopup } from 'components/PopUp/FinishedReadPopup';
+import { useLocation } from 'react-router-dom';
 
 export const MyReading = ({ isStart, handleStart }) => {
+  const location = useLocation();
+  const { book } = location.state;
+
   const [isFinished, setIsFinished] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -33,11 +37,9 @@ export const MyReading = ({ isStart, handleStart }) => {
       <Container>
         <Title>My reading</Title>
         <BookWrap>
-          <img src={book1} alt="book" />
-
-          <h3>Title</h3>
-          <p>Author</p>
-
+          <img src={book.imageUrl} alt="book" />
+          <h3>{book.title}</h3>
+          <p>{book.author}</p>
           <button
             onClick={isFinished && !isStart ? handleFinished : handleStart}
           >
