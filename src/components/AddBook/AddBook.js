@@ -116,7 +116,7 @@ export const AddBook = () => {
                     placeholder="0"
                   />
                 </InputWrap>
-                {errors.pages && touched.pages && (
+                {errors.totalPages && touched.totalPages && (
                   <ErrorMsg name="totalPages" component="div" />
                 )}
                 <BtnApply type="submit">Add book</BtnApply>
@@ -144,8 +144,8 @@ export const AddBook = () => {
             </BookItem>
           </BookList>
           <LinkWrap>
-            <StyledLink to="/">Home</StyledLink>
-            <NavLink to="/">
+            <StyledLink to="/recommended">Home</StyledLink>
+            <NavLink to="/recommended">
               <svg width="24px" height="24px">
                 <use href={`${sprite}#log-in`} />
               </svg>

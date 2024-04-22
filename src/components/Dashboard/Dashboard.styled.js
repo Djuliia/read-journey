@@ -12,5 +12,6 @@ export const Container = styled.div`
 
   @media screen and (min-width: 1440px) {
     padding: 40px 20px 34px;
+    height: 651px;
   }
 `;

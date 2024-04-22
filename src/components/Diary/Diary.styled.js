@@ -43,9 +43,9 @@ export const BtnIcon = styled.button`
 export const DiarySection = styled.div`
   display: flex;
   justify-content: space-between;
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     width: 321px;
-  }
+  } */
 `;
 
 export const StatList = styled.ul`

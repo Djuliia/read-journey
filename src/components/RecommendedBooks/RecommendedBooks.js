@@ -20,20 +20,22 @@ import { getRecommended } from '../../redux/books/operations';
 
 export const RecommendedBooks = ({ filteredBooks }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [limit] = useState(10);
+  const [limit, setLimit] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedBook, setSelectedBook] = useState(null);
   const dispatch = useDispatch();
   const books = useSelector(selectBooks);
   const recommendedBooks = books?.results;
 
-  // useEffect(() => {
-  //   dispatch(getRecommended({ currentPage, limit }));
-  // }, [dispatch, currentPage, limit]);
+  useEffect(() => {
+    dispatch(getRecommended({ page: currentPage, limit }));
+  }, [dispatch, currentPage, limit]);
 
   useEffect(() => {
-    dispatch(getRecommended());
-  }, [dispatch]);
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0);
+    }
+  }, [recommendedBooks]);
 
   const settings = {
     dots: false,
@@ -61,18 +63,28 @@ export const RecommendedBooks = ({ filteredBooks }) => {
     ],
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      setLimit(screenWidth < 768 ? 2 : screenWidth > 1439 ? 10 : 8);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   let sliderRef = useRef(null);
   const next = () => {
     if (currentPage < books.totalPages) {
       setCurrentPage(currentPage + 1);
-      sliderRef.slickNext();
     }
   };
 
   const previous = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
-      sliderRef.slickPrev();
     }
   };
 
@@ -130,6 +142,7 @@ export const RecommendedBooks = ({ filteredBooks }) => {
                     }}
                   >
                     <img
+                      loadin="lazy"
                       src={book.imageUrl ? book.imageUrl : noImg}
                       alt={book.title}
                     />
@@ -150,14 +163,3 @@ export const RecommendedBooks = ({ filteredBooks }) => {
     </>
   );
 };
-
-// const toBack = () => (page === 1 ? undefined : setPage(page - 1));
-// const toForward = () => (page === totalPage ? undefined : setPage(page + 1));
-
-// style={{ stroke: page === 1 ? '#686868' : '#fff' }}
-// style={{ stroke: totalPage === page ? '#686868' : '#fff' }}
-
-// const book = useSelector(selectBooks);
-// const totalPage = book.totalPages;
-
-// const { results } = book;

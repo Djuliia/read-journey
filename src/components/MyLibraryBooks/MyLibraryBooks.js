@@ -78,7 +78,7 @@ export const MyLibraryBooks = () => {
           </Select>
         </HelperWrap>
 
-        {!ownBook ? (
+        {ownBook?.length === 0 ? (
           <NoBookWrap>
             <div>📚</div>
             <p>
@@ -89,7 +89,7 @@ export const MyLibraryBooks = () => {
         ) : (
           <AddedList>
             {ownBook
-              .filter(book => {
+              ?.filter(book => {
                 const bookStatus = book.status;
                 const filterValue = statusMap[filterStatus];
                 if (filterValue === true) {

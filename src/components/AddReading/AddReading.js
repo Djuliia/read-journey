@@ -9,10 +9,45 @@ import {
 import { ErrorMsg, Label, StyledInput } from 'components/Auth/Form.styled';
 import { Progress } from './Progress';
 import { Diary } from '../Diary/Diary';
+import { startReading, stopReading } from '../../redux/books/operations';
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
-export const AddReading = ({ isStart, handleStart }) => {
-  const handleSubmit = async values => {
-    console.log(values);
+export const AddReading = ({ isStart, book, setIsStart }) => {
+  const dispatch = useDispatch();
+  const id = book._id;
+
+  const handleSubmit = async ({ totalPages }) => {
+    try {
+      if (!isStart) {
+        const action = await dispatch(startReading({ page: totalPages, id }));
+
+        if (startReading.fulfilled.match(action)) {
+          toast.success('The reading has started');
+          setIsStart(!isStart);
+        } else if (startReading.rejected.match(action)) {
+          const error = action.error;
+          if (
+            error &&
+            error.message === 'You have already started reading this book'
+          ) {
+            toast.error('You have already started reading this book');
+            return;
+          }
+        }
+      } else {
+        const action = await dispatch(stopReading({ page: totalPages, id }));
+        if (stopReading.fulfilled.match(action)) {
+          // setIsStart(!isStart);
+        } else if (stopReading.rejected.match(action)) {
+          const error = action.error;
+          toast.error('Failed to stop reading', error);
+          return;
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const validationSchema = Yup.object().shape({
@@ -21,6 +56,7 @@ export const AddReading = ({ isStart, handleStart }) => {
       .positive('Number of pages must be positive')
       .integer('Number of pages must be an integer'),
   });
+
   return (
     <Container>
       <Formik
@@ -30,7 +66,7 @@ export const AddReading = ({ isStart, handleStart }) => {
       >
         {({ errors, touched }) => (
           <Form>
-            <FormTitle>Filters:</FormTitle>
+            <FormTitle>{isStart ? 'Stop page' : 'Start page'}</FormTitle>
             <InputWrap>
               <Label htmlFor="pages">Number of pages:</Label>
               <StyledInput
@@ -44,14 +80,14 @@ export const AddReading = ({ isStart, handleStart }) => {
               <ErrorMsg name="totalPages" component="div" />
             )}
             {
-              <BtnApply type="submit" onClick={handleStart}>
+              <BtnApply type="submit">
                 {isStart ? 'To stop' : 'To start'}
               </BtnApply>
             }
           </Form>
         )}
       </Formik>
-      {!isStart ? <Progress /> : <Diary />}
+      {!isStart ? <Progress /> : <Diary isStart={isStart} />}
     </Container>
   );
 };

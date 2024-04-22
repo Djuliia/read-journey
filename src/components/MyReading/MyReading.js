@@ -7,18 +7,14 @@ import { BookWrap, BtnStart, BtnStop } from './MyReading.styled';
 import { useState } from 'react';
 import { PopUp } from 'components/PopUp/PopUp';
 import { FinishedReadPopup } from 'components/PopUp/FinishedReadPopup';
-import { useLocation } from 'react-router-dom';
+import noImg from '../../images/noImg.webp';
 
-export const MyReading = ({ isStart, handleStart }) => {
-  const location = useLocation();
-  const { book } = location.state;
-
+export const MyReading = ({ isStart, setIsStart, book }) => {
   const [isFinished, setIsFinished] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = book => {
+  const openModal = () => {
     setIsModalOpen(true);
-    console.log(book);
     document.body.style.overflow = 'hidden';
   };
 
@@ -37,12 +33,10 @@ export const MyReading = ({ isStart, handleStart }) => {
       <Container>
         <Title>My reading</Title>
         <BookWrap>
-          <img src={book.imageUrl} alt="book" />
+          <img src={book.imageUrl ? book.imageUrl : noImg} alt={book.title} />
           <h3>{book.title}</h3>
           <p>{book.author}</p>
-          <button
-            onClick={isFinished && !isStart ? handleFinished : handleStart}
-          >
+          <button onClick={isFinished && !isStart ? handleFinished : null}>
             {!isStart ? <BtnStart /> : <BtnStop />}
           </button>
         </BookWrap>

@@ -2,15 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addFromFilter,
   addToLibrary,
+  deleteFromLibrary,
   getOwn,
   getRecommended,
+  startReading,
+  stopReading,
 } from './operations';
 
 const initialState = {
   books: [],
   own: [],
-  start: false,
-  finished: false,
   reading: [],
   isLoading: false,
 };
@@ -52,17 +53,22 @@ const booksSlice = createSlice({
       })
       .addCase(getOwn.rejected, state => {
         state.isLoading = false;
+      })
+      .addCase(deleteFromLibrary.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteFromLibrary.fulfilled, (state, action) => {
+        state.own = state.own.filter(book => book._id !== action.payload);
+      })
+      .addCase(deleteFromLibrary.rejected, state => {
+        state.isLoading = false;
+      })
+      .addCase(startReading.fulfilled, (state, action) => {
+        state.reading.push(action.payload);
+      })
+      .addCase(stopReading.fulfilled, (state, action) => {
+        state.reading.push(action.payload);
       });
-    // .addCase(deleteFromLibrary.pending, state => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(deleteFromLibrary.fulfilled, (state, action) => {
-    //   const index = state.own.findIndex(book => book._id === action.payload);
-    //   state.own.splice(index, 1);
-    // })
-    // .addCase(deleteFromLibrary.rejected, state => {
-    //   state.isLoading = false;
-    // });
   },
 });
 

@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AboutBookWrap, BookItem, BtnAdd } from './AboutBookPopup.styled';
-import { addFromFilter } from '../../redux/books/operations';
+import { addToLibrary } from '../../redux/books/operations';
 import toast from 'react-hot-toast';
 import { selectBookByTitle } from '../../redux/books/selectors';
-// import { store } from '../../redux/store';
+import noImg from '../../images/noImg.webp';
 
 export const AboutBookPopup = ({ book, fromLibrary, fromRecommended }) => {
   const dispatch = useDispatch();
@@ -15,21 +15,18 @@ export const AboutBookPopup = ({ book, fromLibrary, fromRecommended }) => {
 
   const handleAction = async () => {
     if (fromLibrary) {
-      navigate('/reading', { state: { book } });
+      navigate('/reading', { state: book });
     } else {
       if (fromRecommended) {
         try {
-          // const existingBook = selectBookByTitle(store.getState(), book.title);
-
           if (existingBook) {
-            toast.error('This book already exists in your library');
             return;
           } else {
-            await dispatch(addFromFilter(book._id));
+            await dispatch(addToLibrary(book._id));
             toast.success('Book successfully added to your library');
           }
         } catch (error) {
-          toast.error('This book already exists in your library');
+          toast.error(error.message);
         }
       }
     }
@@ -38,12 +35,15 @@ export const AboutBookPopup = ({ book, fromLibrary, fromRecommended }) => {
   return (
     <AboutBookWrap>
       <BookItem>
-        <img src={book.imageUrl} alt="title" />
+        <img src={book.imageUrl ? book.imageUrl : noImg} alt={book.title} />
         <h3>{book.title}</h3>
         <p>{book.author}</p>
         <span>{book.totalPages}</span>
       </BookItem>
-      <BtnAdd onClick={handleAction}>
+      <BtnAdd
+        onClick={handleAction}
+        style={{ display: existingBook && !fromLibrary ? 'none' : 'active' }}
+      >
         {fromLibrary ? 'Start reading' : 'Add to library'}
       </BtnAdd>
     </AboutBookWrap>
