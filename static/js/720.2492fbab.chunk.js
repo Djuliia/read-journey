@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkread_journey=self.webpackChunkread_journey||[]).push([[720],{9193:function(e,n,r){r.r(n);var u=r(184);n.default=function(){return(0,u.jsx)("div",{children:(0,u.jsx)("h1",{children:"404"})})}}}]);
-//# sourceMappingURL=720.2492fbab.chunk.js.map
