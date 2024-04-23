@@ -17,7 +17,7 @@ export const AddReading = ({ isStart, book, setIsStart }) => {
   const dispatch = useDispatch();
   const id = book._id;
 
-  const handleSubmit = async ({ totalPages }) => {
+  const handleSubmit = async ({ totalPages }, { resetForm }) => {
     try {
       if (!isStart) {
         const action = await dispatch(startReading({ page: totalPages, id }));
@@ -25,6 +25,7 @@ export const AddReading = ({ isStart, book, setIsStart }) => {
         if (startReading.fulfilled.match(action)) {
           toast.success('The reading has started');
           setIsStart(!isStart);
+          resetForm();
         } else if (startReading.rejected.match(action)) {
           const error = action.error;
           if (
@@ -39,6 +40,7 @@ export const AddReading = ({ isStart, book, setIsStart }) => {
         const action = await dispatch(stopReading({ page: totalPages, id }));
         if (stopReading.fulfilled.match(action)) {
           // setIsStart(!isStart);
+          resetForm();
         } else if (stopReading.rejected.match(action)) {
           const error = action.error;
           toast.error('Failed to stop reading', error);

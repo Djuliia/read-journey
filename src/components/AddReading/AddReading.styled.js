@@ -7,6 +7,7 @@ export const Container = styled.div`
   gap: 40px;
   @media screen and (min-width: 768px) {
     flex-direction: row;
+    max-width: 636px;
   }
 
   @media screen and (min-width: 1440px) {

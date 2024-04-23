@@ -3,6 +3,7 @@ import {
   addFromFilter,
   addToLibrary,
   deleteFromLibrary,
+  deleteStat,
   getOwn,
   getRecommended,
   startReading,
@@ -64,10 +65,13 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(startReading.fulfilled, (state, action) => {
-        state.reading.push(action.payload);
+        state.reading = action.payload;
       })
       .addCase(stopReading.fulfilled, (state, action) => {
-        state.reading.push(action.payload);
+        state.reading = action.payload;
+      })
+      .addCase(deleteStat.fulfilled, (state, action) => {
+        state.reading = action.payload;
       });
   },
 });

@@ -51,6 +51,28 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+  ::-webkit-scrollbar {
+      width: 5px;
+      
+      
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(18, 20, 23, 0.05);
+      inline-size: 3px;
+      border-radius: 15px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #686868;
+      border-radius: 15px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(18, 20, 23, 0.05);
+    }
+  
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover, 
   input:-webkit-autofill:focus {

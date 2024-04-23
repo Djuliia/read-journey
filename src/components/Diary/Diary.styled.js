@@ -1,11 +1,7 @@
 import { styled, css } from 'styled-components';
 import { theme } from 'theme';
 
-export const Container = styled.div`
-  padding: 16px;
-  border-radius: 12px;
-  background: #262626;
-`;
+export const Container = styled.div``;
 
 export const ButtonWrap = styled.div`
   display: flex;
@@ -43,15 +39,31 @@ export const BtnIcon = styled.button`
 export const DiarySection = styled.div`
   display: flex;
   justify-content: space-between;
-  /* @media screen and (min-width: 768px) {
-    width: 321px;
-  } */
+  height: 211px;
+  overflow-y: auto;
+  scroll-padding: 0 6px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #262626;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 289px;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 252px;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 373px;
+  }
 `;
 
 export const StatList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 32px;
+
   div {
     display: flex;
     gap: 9px;
@@ -195,19 +207,6 @@ export const StatSection = styled.div`
     width: 321px;
   }
 
-  img {
-    margin: 0 auto;
-    width: 116px;
-    margin-bottom: 21px;
-    @media screen and (min-width: 768px) {
-      width: 138px;
-    }
-
-    @media screen and (min-width: 1440px) {
-      width: 189px;
-    }
-  }
-
   h4 {
     font-size: 14px;
     font-weight: 500;
@@ -244,6 +243,56 @@ export const StatusBlock = styled.div`
 export const StatusWrap = styled.div`
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 15px;
+`;
+
+export const ProgressBarWrap = styled.div`
+  position: relative;
+  width: 116px;
+  height: 116px;
+  margin-bottom: 21px;
+
+  @media screen and (min-width: 768px) {
+    width: 138px;
+    height: 138px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 168px;
+    height: 168px;
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+export const InfoWrap = styled.div`
+  display: flex;
+  gap: 15px;
+
+  h4 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.29;
+    @media screen and (min-width: 768px) {
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
+
+  p {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: ${theme.colors.light};
+    @media screen and (min-width: 768px) {
+      font-size: 12px;
+      line-height: 1.17;
+    }
+  }
 `;

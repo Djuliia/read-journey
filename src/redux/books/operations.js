@@ -77,7 +77,6 @@ export const startReading = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/books/reading/start', credentials);
-      console.log(data);
       return data;
     } catch (error) {
       if (error.response && error.response.status === 409) {
@@ -114,6 +113,21 @@ export const stopReading = createAsyncThunk(
       } else {
         return thunkAPI.rejectWithValue(error.message);
       }
+    }
+  }
+);
+
+export const deleteStat = createAsyncThunk(
+  'books/reading',
+  async (bookId, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(`/books/remove/${bookId}`);
+      return data;
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        throw new Error('Such book already exists');
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
