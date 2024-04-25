@@ -12,7 +12,9 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    gap: 20px;
     flex-direction: column;
+    width: 313px;
   }
 `;
 

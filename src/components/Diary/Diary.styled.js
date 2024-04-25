@@ -46,16 +46,14 @@ export const DiarySection = styled.div`
   border-radius: 12px;
   background: #262626;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    width: 289px;
-  }
-
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    width: 321px;
     height: 252px;
   }
 
-  @media screen and (min-width: 768px) {
-    height: 373px;
+  @media screen and (min-width: 1440px) {
+    height: 100%;
+    padding: 20px;
   }
 `;
 
@@ -161,6 +159,7 @@ export const GraphList = styled.ul`
   }
 
   button {
+    align-self: self-start;
     background-color: transparent;
     border: none;
 
@@ -171,7 +170,6 @@ export const GraphList = styled.ul`
     }
 
     svg {
-      transform: translateY(-4px);
       transition: ${theme.transition};
       stroke: ${theme.colors.light};
       fill: transparent;
@@ -180,19 +178,19 @@ export const GraphList = styled.ul`
 `;
 
 export const GraphWrap = styled.div`
-  margin-top: 19px;
   margin-right: 6px;
   @media screen and (min-width: 768px) {
-    margin-top: 16px;
     margin-right: 8px;
   }
 `;
 
 export const HelperWrap = styled.div`
+  margin-top: 19px;
   display: flex;
   gap: 6px;
 
   @media screen and (min-width: 768px) {
+    margin-top: 16px;
     gap: 8px;
   }
 `;
@@ -252,7 +250,6 @@ export const ProgressBarWrap = styled.div`
   position: relative;
   width: 116px;
   height: 116px;
-  margin-bottom: 21px;
 
   @media screen and (min-width: 768px) {
     width: 138px;
@@ -294,5 +291,18 @@ export const InfoWrap = styled.div`
       font-size: 12px;
       line-height: 1.17;
     }
+  }
+`;
+
+export const StatDescription = styled.div`
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+    color: ${theme.colors.light};
   }
 `;

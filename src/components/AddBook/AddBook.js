@@ -15,21 +15,20 @@ import {
 } from 'components/Filters/Filters.styled';
 import { NavLink } from 'react-router-dom';
 import sprite from '../../images/sprite.svg';
-import book1 from '../../images/book (1).jpg';
-import book2 from '../../images/book (2).jpg';
-import book3 from '../../images/book (3).jpg';
+
 import {
   BookItem,
   BookList,
   Container,
   RecommendedWrap,
 } from './AddBook.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PopUp } from 'components/PopUp/PopUp';
 import { AddBookPopup } from 'components/PopUp/AddBookPopup';
-import { addFromFilter } from '../../redux/books/operations';
-import { useDispatch } from 'react-redux';
+import { addFromFilter, getRecommended } from '../../redux/books/operations';
+import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
+import { selectBooks } from '../../redux/books/selectors';
 
 export const AddBook = () => {
   const validationSchema = Yup.object().shape({
@@ -43,6 +42,7 @@ export const AddBook = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const { results } = useSelector(selectBooks);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -54,15 +54,21 @@ export const AddBook = () => {
     document.body.style.overflow = 'auto';
   };
 
-  const handleSubmit = async values => {
+  useEffect(() => {
+    dispatch(getRecommended({ page: 1, limit: 10 }));
+  }, [dispatch]);
+
+  const handleSubmit = async (values, { resetForm }) => {
     try {
       const action = await dispatch(addFromFilter(values));
       if (addFromFilter.fulfilled.match(action)) {
+        resetForm();
         openModal();
       } else if (addFromFilter.rejected.match(action)) {
         const error = action.error;
         if (error && error.message === 'Such book already exists') {
           toast.error('This book already exists in your library');
+          resetForm();
           return;
         }
       }
@@ -90,6 +96,9 @@ export const AddBook = () => {
                     name="title"
                     id="title"
                     placeholder="Enter text"
+                    className={`special ${
+                      touched.title && errors.title ? 'error' : ''
+                    } ${touched.title && !errors.title ? 'success' : ''}`}
                   />
                 </InputWrap>
                 {errors.title && touched.title && (
@@ -102,6 +111,9 @@ export const AddBook = () => {
                     name="author"
                     id="author"
                     placeholder="Enter text"
+                    className={`special ${
+                      touched.author && errors.author ? 'error' : ''
+                    } ${touched.author && !errors.author ? 'success' : ''}`}
                   />
                 </InputWrap>
                 {errors.author && touched.author && (
@@ -114,6 +126,11 @@ export const AddBook = () => {
                     name="totalPages"
                     id="pages"
                     placeholder="0"
+                    className={`special ${
+                      touched.totalPages && errors.totalPages ? 'error' : ''
+                    } ${
+                      touched.totalPages && !errors.totalPages ? 'success' : ''
+                    }`}
                   />
                 </InputWrap>
                 {errors.totalPages && touched.totalPages && (
@@ -127,21 +144,14 @@ export const AddBook = () => {
         <RecommendedWrap>
           <Title>Recommended books</Title>
           <BookList>
-            <BookItem>
-              <img src={book1} alt="book" />
-              <h3>Title</h3>
-              <p>Author</p>
-            </BookItem>
-            <BookItem>
-              <img src={book2} alt="book" />
-              <h3>Title</h3>
-              <p>Author</p>
-            </BookItem>
-            <BookItem>
-              <img src={book3} alt="book" />
-              <h3>Title</h3>
-              <p>Author</p>
-            </BookItem>
+            {results &&
+              results.slice(0, 3).map(({ _id, imageUrl, title, author }) => (
+                <BookItem key={_id}>
+                  <img src={imageUrl} alt={title} />
+                  <h3>{title}</h3>
+                  <p>{author}</p>
+                </BookItem>
+              ))}
           </BookList>
           <LinkWrap>
             <StyledLink to="/recommended">Home</StyledLink>

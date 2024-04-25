@@ -39,16 +39,20 @@ export const BookList = styled.ul`
 
 export const BookItem = styled.li`
   width: 71px;
+  height: 141px;
 
   img {
     border-radius: 8px;
     margin-bottom: 8px;
+    height: 107px;
   }
 
   p,
   h3 {
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
+    text-transform: unset;
   }
 
   p {

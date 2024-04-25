@@ -13,6 +13,7 @@ import {
   HelperWrap,
   InfoWrap,
   ProgressBarWrap,
+  StatDescription,
   StatList,
   StatSection,
   StatusBlock,
@@ -26,16 +27,15 @@ import toast from 'react-hot-toast';
 
 export const Diary = ({ isStart }) => {
   const dispatch = useDispatch();
-  const [isActive, setIsActive] = useState(true);
   const [isStat, setIsStat] = useState(false);
+  const [activeItems, setActiveItems] = useState({});
   const bookInfo = useSelector(selectReadingBooks);
   const { timeLeftToRead, progress, totalPages, _id } = bookInfo;
+  const totalReadPages = progress?.reduce((total, item) => {
+    return total + (item.finishPage - item.startPage + 1);
+  }, 0);
+  const percentageRead = ((totalReadPages / totalPages) * 100).toFixed(1);
 
-  const finishPages = progress?.map(item => item.finishPage);
-  const finishPage = finishPages?.slice(-1);
-
-  const percentageRead =
-    finishPage && totalPages ? ((finishPage / totalPages) * 100).toFixed(1) : 0;
   const handleDiary = () => {
     setIsStat(false);
   };
@@ -44,9 +44,21 @@ export const Diary = ({ isStart }) => {
     setIsStat(true);
   };
 
-  const handleDelete = async progressId => {
+  const toggleActive = itemId => {
+    setActiveItems(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId],
+    }));
+  };
+
+  const handleDelete = async readingId => {
     try {
-      await dispatch(deleteStat(_id, progressId));
+      const action = await dispatch(deleteStat({ bookId: _id, readingId }));
+      if (deleteStat.fulfilled.match(action)) {
+        toast.success('Item deleted successfully');
+      } else if (deleteStat.rejected.match(action)) {
+        toast.error(action.error.message);
+      }
     } catch (error) {
       toast.error(error);
     }
@@ -75,56 +87,85 @@ export const Diary = ({ isStart }) => {
             <>
               <StatList>
                 {progress?.map(
-                  ({ _id, startReading, finishPage, startPage }) => (
+                  ({
+                    _id,
+                    startReading,
+                    finishPage,
+                    startPage,
+                    finishReading,
+                  }) => (
                     <li key={_id}>
                       <div>
-                        <button onClick={() => setIsActive(!isActive)}>
+                        <button onClick={() => toggleActive(_id)}>
                           <svg width="16" height="16">
                             <use
                               href={
-                                isActive
+                                activeItems[_id]
                                   ? `${sprite}#black-block-active`
                                   : `${sprite}#black-block`
                               }
                             />
                           </svg>
                         </button>
-                        <Text $isActive={isActive}>
+                        <Text $isActive={activeItems[_id]}>
                           {new Date(startReading).toLocaleDateString()}
                         </Text>
                       </div>
                       <h4>
                         {(
-                          ((finishPage - startPage) / totalPages) *
+                          ((finishPage - startPage + 1) / totalPages) *
                           100
                         ).toFixed(1)}
                         %
                       </h4>
-                      <span>{timeLeftToRead.minutes} minutes</span>
+                      <span>
+                        {(
+                          (new Date(finishReading) - new Date(startReading)) /
+                          (1000 * 60)
+                        ).toFixed(1)}{' '}
+                        minutes
+                      </span>
                     </li>
                   )
                 )}
               </StatList>
 
               <GraphList>
-                {progress?.map(({ _id, finishPage, startPage }) => (
-                  <li key={_id}>
-                    <h4>{finishPage} pages</h4>
-                    <HelperWrap>
-                      <GraphWrap>
-                        <svg width="43" height="18">
-                          <use href={`${sprite}#graph1`} />
-                        </svg>
-                        <p>{finishPage - startPage} pages per hour</p>
-                      </GraphWrap>
-                      <button onClick={() => handleDelete(_id)}>
-                        <svg width="14" height="14">
-                          <use href={`${sprite}#trash`} />
-                        </svg>
-                      </button>
-                    </HelperWrap>
-                  </li>
-                ))}
+                {progress?.map(
+                  ({
+                    _id,
+                    finishPage,
+                    startPage,
+                    finishReading,
+                    startReading,
+                  }) => (
+                    <li key={_id}>
+                      <h4>{finishPage - startPage + 1} pages</h4>
+                      <HelperWrap>
+                        <GraphWrap>
+                          <svg width="43" height="18">
+                            <use href={`${sprite}#graph1`} />
+                          </svg>
+                          <p>
+                            {(
+                              (totalPages /
+                                ((new Date(finishReading) -
+                                  new Date(startReading)) /
+                                  (1000 * 60))) *
+                              60
+                            ).toFixed(0)}
+                            &nbsp; pages per hour
+                          </p>
+                        </GraphWrap>
+                        <button onClick={() => handleDelete(_id)}>
+                          <svg width="14" height="14">
+                            <use href={`${sprite}#trash`} />
+                          </svg>
+                        </button>
+                      </HelperWrap>
+                    </li>
+                  )
+                )}
               </GraphList>
             </>
           ) : (
@@ -133,6 +174,11 @@ export const Diary = ({ isStart }) => {
         </DiarySection>
       ) : (
         <StatSection>
+          <StatDescription>
+            Each page, each chapter is a new round of knowledge, a new step
+            towards understanding. By rewriting statistics, we create our own
+            reading history.
+          </StatDescription>
           <StatusWrap>
             <ProgressBarWrap>
               <Circle
@@ -149,7 +195,7 @@ export const Diary = ({ isStart }) => {
               <StatusBlock />
               <div>
                 <h4>{percentageRead}%</h4>
-                <p>{finishPage} pages read</p>
+                <p>{totalReadPages} pages read</p>
               </div>
             </InfoWrap>
           </StatusWrap>

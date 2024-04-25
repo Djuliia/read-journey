@@ -9,14 +9,13 @@ export const Reading = () => {
   const [isStart, setIsStart] = useState(false);
   const location = useLocation();
   const book = location.state;
-  // const handleStart = () => setIsStart(prev => !prev);
 
   return book ? (
     <Section>
       <Dashboard>
         <AddReading isStart={isStart} setIsStart={setIsStart} book={book} />
       </Dashboard>
-      <MyReading isStart={isStart} setIsStart={setIsStart} book={book} />
+      <MyReading isStart={isStart} book={book} />
     </Section>
   ) : null;
 };

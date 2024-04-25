@@ -55,7 +55,7 @@ export const RecommendedBooks = ({ filteredBooks }) => {
         },
       },
       {
-        breakpoint: 1279,
+        breakpoint: 1439,
         settings: {
           slidesToShow: 4,
         },

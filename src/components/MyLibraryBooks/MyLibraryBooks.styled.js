@@ -5,18 +5,19 @@ import chevron from '../../images/chevron-down.svg';
 export const Container = styled.div`
   padding: 40px 20px;
   width: 100%;
-  min-height: 407px;
+  /* height: 471px; */
   border-radius: 30px;
   background-color: ${theme.colors.secondary};
+  overflow-y: auto;
 
   @media screen and (min-width: 768px) {
     padding: 40px;
-    min-height: 518px;
+    /* height: 518px; */
   }
 
   @media screen and (min-width: 1440px) {
-    min-height: 651px;
-    width: 807px;
+    height: 651px;
+    width: 847px;
   }
 `;
 
@@ -114,16 +115,19 @@ export const HelperWrap = styled.div`
 export const AddedList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 21px;
-  flex-basis: calc((100% - 21px) / 2);
+  gap: 20px;
   margin-top: 14px;
-  @media screen and (min-width: 768px) {
-    margin-top: 28px;
-  }
 `;
 
 export const AddedItem = styled.li`
-  width: 137px;
+  flex-basis: calc((100% - 21px) / 2);
+  @media screen and (min-width: 768px) {
+    flex-basis: calc((100% - 3 * 25px) / 4);
+  }
+
+  @media screen and (min-width: 1440px) {
+    flex-basis: calc((100% - 4 * 20px) / 5);
+  }
   img {
     width: 137px;
     height: 208px;

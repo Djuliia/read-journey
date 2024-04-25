@@ -23,30 +23,34 @@ export const Filters = ({ handleSubmit }) => {
           initialValues={{ title: '', author: '' }}
           onSubmit={handleSubmit}
         >
-          <Form>
-            <FormTitle>Filters:</FormTitle>
-            <InputWrap>
-              <Label htmlFor="title">Book title:</Label>
-              <StyledInput
-                type="text"
-                name="title"
-                id="title"
-                placeholder="Enter text"
-              />
-            </InputWrap>
-            <InputWrap>
-              <Label htmlFor="author">The author:</Label>
-              <StyledInput
-                type="text"
-                name="author"
-                id="author"
-                placeholder="Enter text"
-              />
-            </InputWrap>
-            <BtnApply type="submit">To apply</BtnApply>
-          </Form>
+          {({ errors, touched }) => (
+            <Form>
+              <FormTitle>Filters:</FormTitle>
+              <InputWrap>
+                <Label htmlFor="title">Book title:</Label>
+                <StyledInput
+                  type="text"
+                  name="title"
+                  id="title"
+                  placeholder="Enter text"
+                />
+              </InputWrap>
+
+              <InputWrap>
+                <Label htmlFor="author">The author:</Label>
+                <StyledInput
+                  type="text"
+                  name="author"
+                  id="author"
+                  placeholder="Enter text"
+                />
+              </InputWrap>
+              <BtnApply type="submit">To apply</BtnApply>
+            </Form>
+          )}
         </Formik>
       </div>
+
       <DescWrap>
         <Title>Start your workout</Title>
         <DescList>

@@ -118,16 +118,15 @@ export const stopReading = createAsyncThunk(
 );
 
 export const deleteStat = createAsyncThunk(
-  'books/reading',
-  async (bookId, thunkAPI) => {
+  'books/deleteReading',
+  async ({ bookId, readingId }, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/books/remove/${bookId}`);
+      const { data } = await axios.delete(
+        `/books/reading?bookId=${bookId}&readingId=${readingId}`
+      );
       return data;
     } catch (error) {
-      if (error.response && error.response.status === 409) {
-        throw new Error('Such book already exists');
-      }
-      return thunkAPI.rejectWithValue(error.message);
+      throw new Error(error.response.data.message || error.message);
     }
   }
 );

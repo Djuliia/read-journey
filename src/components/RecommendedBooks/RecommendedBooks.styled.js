@@ -26,6 +26,11 @@ export const Container = styled.div`
   @media screen and (min-width: 768px) {
     padding: 40px;
   }
+  @media screen and (min-width: 1440px) {
+    width: 847px;
+    height: 651px;
+    padding-bottom: 28px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -55,18 +60,11 @@ export const SliderBtnWrap = styled.div`
     background-color: transparent;
     border: 1px solid rgba(249, 249, 249, 0.2);
     transition: border ${theme.transition};
-    /* &:hover {
-      border: 1px solid ${theme.colors.primary};
-    } */
 
     svg {
       width: 16px;
       height: 16px;
-      /* stroke: rgba(249, 249, 249, 0.2); */
       transition: fill ${theme.transition};
-      /* &:hover {
-        stroke: ${theme.colors.primary};
-      } */
     }
     @media screen and (min-width: 768px) {
       width: 40px;
@@ -98,8 +96,8 @@ export const SliderContainer = styled.div`
       width: calc(100% + 25px);
     }
   }
-  @media screen and (min-width: 1280px) {
-    width: 807px;
+  @media screen and (min-width: 1440px) {
+    width: 769px;
   }
 `;
 
